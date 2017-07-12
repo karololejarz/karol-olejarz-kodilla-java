@@ -1,4 +1,5 @@
 package com.kodilla.testing.collection;
+import com.kodilla.testing.collection.*;
 import org.junit.*;
 import java.util.*;
 
@@ -24,19 +25,27 @@ public class CollectionTestSuite {
         one.exterminate(numbers);
     }
 
-    public static final int EXCLUSIVE_UPPER_BOND = 100;
-
     @Test
     public void testOddNumbersExterminatorNormalList() {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
-        Random randomize = new Random();
-
-        for (int i = 0; i < 20; i++) {
-            numbers.add(randomize.nextInt(EXCLUSIVE_UPPER_BOND));
-        }
+        numbers.add(75);
+        numbers.add(89);
+        numbers.add(10);
+        numbers.add(86);
+        numbers.add(26);
+        numbers.add(61);
+        ArrayList<Integer> expected = new ArrayList<Integer>();
+        expected.add(10);
+        expected.add(86);
+        expected.add(26);
 
         OddNumbersExterminator one = new OddNumbersExterminator();
-        one.exterminate(numbers);
+        /*No Message as there is default good coverage of errors
+         java.lang.AssertionError:
+         Expected :[10, 86, 26]
+         Actual   :[10, 86, 6]*/
+        Assert.assertEquals(one.exterminate(numbers), expected);
+
     }
 
 }
