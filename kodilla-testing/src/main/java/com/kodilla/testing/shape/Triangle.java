@@ -9,7 +9,10 @@ public class Triangle extends Figure {
         return "Triangle";
     }
 
-    public double getField (double base, double height) {
+    private double base, height;
+    public String name;
+
+    public double getField() {
 
         double field = base * height / 2;
 
@@ -24,7 +27,7 @@ public class Triangle extends Figure {
             }
 
             else {
-                System.out.println("The field is: " + field);
+                System.out.println("The triangle's " + name + " field is: " + field);
             }
 
         }
@@ -33,7 +36,9 @@ public class Triangle extends Figure {
     }
 
     public Triangle (String name, double base, double height) {
-        System.out.println(getFigureName() + " named " + name + " base: " + base + " h: " + height + " of area : " + getField(base, height));
+        this.name = name;
+        this.base = base;
+        this.height = height;
     }
 
 }

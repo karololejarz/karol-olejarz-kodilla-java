@@ -7,22 +7,20 @@ import java.util.*;
  */
 public class ShapeCollector {
     HashSet<Figure> figureHashSet = new HashSet();
-    Iterator<Figure> itr = figureHashSet.iterator();
 
-    public void addShape(Figure shape) {
-        figureHashSet.add(shape);
+    public void addShape(Figure figure) {
+        figureHashSet.add(figure);
     }
 
-    public void removeShape(Figure shape) {
-        figureHashSet.remove(shape);
+    public void removeShape(Figure figure) {
+        figureHashSet.remove(figure);
     }
 
-    public void showCollection() {
-        /*while(itr.hasNext()) {
-            System.out.println(itr.next());
-        } kompiluje, nie zwraca*/
-        System.out.println(figureHashSet);
-        System.out.println(figureHashSet.size() + " shapes");
+    public HashSet<Figure> showCollection() {
+        for(Figure figure : figureHashSet) {
+            System.out.println(figure.getFigureName() + " " + figure.getField());
+        }
+        return figureHashSet;
     }
 
 }

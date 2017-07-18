@@ -6,26 +6,32 @@ package com.kodilla.testing.shape;
 
 public class Circle extends Figure {
 
+    private double radius;
+    public final static double PI_4 = 3.1416;
+    public String name;
+
     public String getFigureName () {
         return "Circle";
     }
 
-    public double getField(double radius) {
-        double field;
-        field = Math.PI * Math.pow(radius, 2);
+    public double getField() {
+
+
+        double field = PI_4 * Math.pow(radius, 2);
 
         if (radius<0) {
             System.out.println("The radius can't be negative");
         }
 
         else {
-            System.out.println("The field is: " + field);
+            System.out.println("The Circle's " + name + " field is: " + field);
         }
 
         return field;
     }
 
     public Circle (String name, double radius) {
-        System.out.println(getFigureName() + " named " + name + " of radius: " + radius + " of area: " + getField(radius));
+        this.name = name;
+        this.radius = radius;
     }
 }

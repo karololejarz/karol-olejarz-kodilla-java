@@ -5,11 +5,14 @@ package com.kodilla.testing.shape;
  */
 public class Square extends Figure {
 
+    private double side;
+    public String name;
+
     public String getFigureName() {
         return "Square";
     }
 
-    public double getField (double side) {
+    public double getField () {
 
         double field = Math.pow(side, 2);
 
@@ -18,14 +21,15 @@ public class Square extends Figure {
         }
 
         else {
-            System.out.println("The field is: " + field);
+            System.out.println("The square's " + name + " field is: " + field);
         }
 
         return field;
     }
 
     public Square (String name, double side) {
-        System.out.println(getFigureName() + " named " + name + " side: " + side + " of area: " + getField(side));
+        this.name = name;
+        this.side = side;
     }
 
 }
