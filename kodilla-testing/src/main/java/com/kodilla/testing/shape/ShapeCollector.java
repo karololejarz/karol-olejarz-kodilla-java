@@ -6,21 +6,32 @@ import java.util.*;
  * Created by Karol Olejarz on 13.07.2017.
  */
 public class ShapeCollector {
-    HashSet<Figure> figureHashSet = new HashSet();
+    ArrayList<Figure> figureArrayList = new ArrayList();
 
     public void addShape(Figure figure) {
-        figureHashSet.add(figure);
+        figureArrayList.add(figure);
     }
 
     public void removeShape(Figure figure) {
-        figureHashSet.remove(figure);
+        figureArrayList.remove(figure);
     }
 
-    public HashSet<Figure> showCollection() {
-        for(Figure figure : figureHashSet) {
+    public Figure getFigure (int position)  {
+        return figureArrayList.get(position);
+    }
+
+    public ArrayList<Figure> showCollection() {
+        for(Figure figure : figureArrayList) {
             System.out.println(figure.getFigureName() + " " + figure.getField());
         }
-        return figureHashSet;
+        return figureArrayList;
     }
 
+    public ShapeCollector(ArrayList<Figure> figureArrayList) {
+        this.figureArrayList = figureArrayList;
+    }
+
+    public ArrayList<Figure> getFigureArrayList() {
+        return figureArrayList;
+    }
 }

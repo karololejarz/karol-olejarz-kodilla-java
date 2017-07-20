@@ -26,10 +26,6 @@ public class Triangle extends Figure {
                 System.out.println("The height can't be negative");
             }
 
-            else {
-                System.out.println("The triangle's " + name + " field is: " + field);
-            }
-
         }
 
         return field;

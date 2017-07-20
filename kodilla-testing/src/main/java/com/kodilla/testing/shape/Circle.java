@@ -23,10 +23,6 @@ public class Circle extends Figure {
             System.out.println("The radius can't be negative");
         }
 
-        else {
-            System.out.println("The Circle's " + name + " field is: " + field);
-        }
-
         return field;
     }
 

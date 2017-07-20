@@ -20,10 +20,6 @@ public class Square extends Figure {
             System.out.println("The side can't be negative");
         }
 
-        else {
-            System.out.println("The square's " + name + " field is: " + field);
-        }
-
         return field;
     }
 
