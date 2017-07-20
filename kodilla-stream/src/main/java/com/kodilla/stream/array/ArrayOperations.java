@@ -7,7 +7,7 @@ public interface ArrayOperations {
     static double getAverage(int[] numbers) {
         double average;
         average = IntStream.range(0,numbers.length).average().getAsDouble();
-        System.out.println("The average is: " + average);
+        System.out.println("The numbers' average is: " + average);
         return average;
     }
 

@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ArrayOperationsTestSuite {
-
     @Test
     public void testGetAverage1n() {
         int[] numbers = {0};
@@ -40,5 +39,4 @@ public class ArrayOperationsTestSuite {
         int[] numbers = {0,1,2,3,4,5};
         Assert.assertEquals(2.5,ArrayOperations.getAverage(numbers),0.0);
     }
-
 }
