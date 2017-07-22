@@ -8,17 +8,17 @@ import java.util.List;
 public class AdvancedStatistics {
 
     Statistics statistics;
+    List<String> userNames = statistics.usersNames();
+    int userCount = userNames.size();
+    double postsPerUser;
+    double commentsPerUser;
+    double commentsPerPost;
 
     public AdvancedStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
 
     public void calculateAdvStatistics(Statistics statistics) {
-        List<String> userNames = statistics.usersNames();
-        int userCount = userNames.size();
-        double postsPerUser;
-        double commentsPerUser;
-        double commentsPerPost;
 
         if (userCount == 0) {
             System.out.println("There are no users");
@@ -35,5 +35,29 @@ public class AdvancedStatistics {
                 System.out.println("Users: " + userCount + " PPU: " + postsPerUser + " CPU: " + commentsPerUser + " CPP: " + commentsPerPost);
             }
         }
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public List<String> getUserNames() {
+        return userNames;
+    }
+
+    public int getUserCount() {
+        return userCount;
+    }
+
+    public double getPostsPerUser() {
+        return postsPerUser;
+    }
+
+    public double getCommentsPerUser() {
+        return commentsPerUser;
+    }
+
+    public double getCommentsPerPost() {
+        return commentsPerPost;
     }
 }
