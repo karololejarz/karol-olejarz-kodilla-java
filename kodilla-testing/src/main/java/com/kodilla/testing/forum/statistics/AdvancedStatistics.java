@@ -8,8 +8,7 @@ import java.util.List;
 public class AdvancedStatistics {
 
     Statistics statistics;
-    List<String> userNames = statistics.usersNames();
-    int userCount = userNames.size();
+
     double postsPerUser;
     double commentsPerUser;
     double commentsPerPost;
@@ -19,6 +18,9 @@ public class AdvancedStatistics {
     }
 
     public void calculateAdvStatistics(Statistics statistics) {
+
+        List<String> userNames = statistics.usersNames();
+        int userCount = userNames.size();
 
         if (userCount == 0) {
             System.out.println("There are no users");
@@ -39,14 +41,6 @@ public class AdvancedStatistics {
 
     public Statistics getStatistics() {
         return statistics;
-    }
-
-    public List<String> getUserNames() {
-        return userNames;
-    }
-
-    public int getUserCount() {
-        return userCount;
     }
 
     public double getPostsPerUser() {

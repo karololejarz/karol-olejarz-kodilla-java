@@ -102,9 +102,13 @@ public class ForumStatisticsTestSuite {
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
 
         moreStats.calculateAdvStatistics(statisticsMock);
+        Assert.assertEquals(10.0,moreStats.getPostsPerUser(),0.0);
+        Assert.assertEquals(15.0,moreStats.getCommentsPerUser(),0.0);
+        Assert.assertEquals(1.5,moreStats.getCommentsPerPost(),0.0);
     }
 
     @Test
+    /*tests Posts>Comments*/
     public void hUsers1kPosts5hComments() {
         System.out.println("Testing 100 users, 1000 posts, 500 comments...");
         Statistics statisticsMock = mock(Statistics.class);
@@ -125,6 +129,10 @@ public class ForumStatisticsTestSuite {
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
 
         moreStats.calculateAdvStatistics(statisticsMock);
+
+        Assert.assertEquals(10.0,moreStats.getPostsPerUser(),0.0);
+        Assert.assertEquals(5.0,moreStats.getCommentsPerUser(),0.0);
+        Assert.assertEquals(0.5,moreStats.getCommentsPerPost(),0.0);
     }
 
 }
