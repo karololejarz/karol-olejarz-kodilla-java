@@ -32,7 +32,7 @@ public class AdvancedStatistics {
                 postsPerUser = (double)statistics.postsCount() / (double)userCount;
                 commentsPerUser = (double)statistics.commentsCount() / (double)userCount;
                 commentsPerPost = (double)statistics.commentsCount() / (double)statistics.postsCount();
-                System.out.println("Users: " + userCount + " PPU: " + postsPerUser + " CPU: " + commentsPerUser + " CPP: " + commentsPerPost);
+                System.out.println("User count: " + userCount + " PPU: " + postsPerUser + " CPU: " + commentsPerUser + " CPP: " + commentsPerPost);
             }
         }
     }
