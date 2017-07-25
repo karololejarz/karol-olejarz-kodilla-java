@@ -40,7 +40,7 @@ public class ForumStatisticsTestSuite {
 
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
 
-        moreStats.calculateAdvStatistics(statisticsMock);
+        Assert.assertEquals("0_USERS",moreStats.calculateAdvStatistics(statisticsMock));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class ForumStatisticsTestSuite {
 
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
 
-        moreStats.calculateAdvStatistics(statisticsMock);
+        Assert.assertEquals("0_POSTS",moreStats.calculateAdvStatistics(statisticsMock));
     }
 
     @Test
@@ -75,8 +75,11 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
 
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
-
         moreStats.calculateAdvStatistics(statisticsMock);
+
+        Assert.assertEquals(100.0,moreStats.getPostsPerUser(),0.0);
+        Assert.assertEquals(0.0,moreStats.getCommentsPerUser(),0.0);
+        Assert.assertEquals(0.0,moreStats.getCommentsPerPost(),0.0);
     }
 
 
@@ -100,8 +103,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
 
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
-
         moreStats.calculateAdvStatistics(statisticsMock);
+
         Assert.assertEquals(10.0,moreStats.getPostsPerUser(),0.0);
         Assert.assertEquals(15.0,moreStats.getCommentsPerUser(),0.0);
         Assert.assertEquals(1.5,moreStats.getCommentsPerPost(),0.0);
@@ -127,7 +130,6 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
 
         AdvancedStatistics moreStats = new AdvancedStatistics(statisticsMock);
-
         moreStats.calculateAdvStatistics(statisticsMock);
 
         Assert.assertEquals(10.0,moreStats.getPostsPerUser(),0.0);
