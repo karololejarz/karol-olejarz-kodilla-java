@@ -15,6 +15,14 @@ public class Country {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return "Country{" +
+                "name='" + name + '\'' +
+                ", population=" + population +
+                '}';
+    }
+
     public BigDecimal getPopulation() {
         return population;
     }

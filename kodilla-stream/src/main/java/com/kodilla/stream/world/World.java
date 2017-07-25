@@ -5,26 +5,35 @@ import java.util.ArrayList;
 
 public class World {
 
-    ArrayList continents = new ArrayList<>();
-    Continent1 continent1 = new Continent1();
-    Continent2 continent2 = new Continent2();
-    Continent3 continent3 = new Continent3();
+    String worldName;
+    ArrayList<Continent> continents = new ArrayList<>();
 
-    ArrayList collection() {
-        continent1.collection();
-        continent2.collection();
-        continent3.collection();
-        continents.add(continent1);
-        continents.add(continent2);
-        continents.add(continent3);
+    public World(String worldName, ArrayList<Continent> continents) {
+        this.worldName = worldName;
+        this.continents = continents;
+    }
+
+    public String getWorldName() {
+        return worldName;
+    }
+
+    public ArrayList<Continent> getContinents() {
         return continents;
     }
 
+    @Override
+    public String toString() {
+        return "World{" +
+                "worldName='" + worldName + '\'' +
+                ", continents=" + continents +
+                '}';
+    }
+
     BigDecimal getPeopleQuantity() {
-        collection();
         BigDecimal worldPopulation = continents.stream()
-            .map(Country::getPopulation)
-            .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
+            .flatMap(o->o.getCollection().stream()
+                    .map(Country::getPopulation))
+                    .reduce(BigDecimal.ZERO,BigDecimal::add);
         return worldPopulation;
     }
 }
