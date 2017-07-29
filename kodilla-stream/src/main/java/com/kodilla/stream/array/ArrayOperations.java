@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 
 public interface ArrayOperations {
 
+    /*
     static double getAverageOf(int[] numbers) {
         double average;
         System.out.println("Numbers " + Arrays.toString(numbers));
@@ -12,6 +13,7 @@ public interface ArrayOperations {
         System.out.println("The numbers' average is: " + average);
         return average;
     }
+    */
 
     static double getAverage(int[] numbers) {
         double average;

@@ -6,19 +6,19 @@ import org.junit.Test;
 public class ArrayOperationsTestSuite {
 
     @Test
-    public void TestAverage() {
+    public void testGetAverage() {
         int[] numbers = {1, 2};
         Assert.assertEquals(1.5, ArrayOperations.getAverage(numbers),0.0);
     }
 
     @Test
-    public void TestAverage0() {
+    public void testGetAverage0() {
         int[] numbers = {0, 0};
         Assert.assertEquals(0.0, ArrayOperations.getAverage(numbers),0.0);
     }
 
     @Test
-    public void TestAverageN() {
+    public void testGetAverageN() {
         int[] numbers = {-1, -4};
         Assert.assertEquals(-2.5, ArrayOperations.getAverage(numbers),0.0);
     }
