@@ -7,20 +7,17 @@ public class ArrayOperationsTestSuite {
 
     @Test
     public void testGetAverage() {
-        int[] numbers = {1, 2};
+        int[] numbers = new int[20];
+
+        for (int i=0; i<10; i++) {
+            numbers[i] = 1;
+        }
+
+        for (int i=10; i<20; i++) {
+            numbers[i] = 2;
+        }
+
         Assert.assertEquals(1.5, ArrayOperations.getAverage(numbers),0.0);
-    }
-
-    @Test
-    public void testGetAverage0() {
-        int[] numbers = {0, 0};
-        Assert.assertEquals(0.0, ArrayOperations.getAverage(numbers),0.0);
-    }
-
-    @Test
-    public void testGetAverageN() {
-        int[] numbers = {-1, -4};
-        Assert.assertEquals(-2.5, ArrayOperations.getAverage(numbers),0.0);
     }
 
 }
