@@ -146,14 +146,18 @@ public class BoardTestSuite {
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
 
+        /*T#2 -20d, T#4 -10d, T#5 0d, expected result is -10.0 compared to LocalDate.now()*/
         double averageDaysTillNow = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> t.getCreated())
-                .filter(d -> d.compareTo(LocalDate.now()) <= 0)
-                .count();
+                .mapToDouble(d -> d.compareTo(LocalDate.now()))
+                .average()
+                .getAsDouble();
 
-        System.out.println(averageDaysTillNow);
+        Assert.assertEquals(-10.0, averageDaysTillNow,0.0);
+
+        System.out.println("The average duration of task in progress is: " + averageDaysTillNow*-1);
 
     }
 }
