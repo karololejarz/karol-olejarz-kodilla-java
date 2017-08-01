@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -117,12 +119,29 @@ public class BookDirectoryTestSuite {
     public void testUser5BookList() {
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("1stName", "2ndName", "55270612345");
-        List<Book> listOfBooks = generateListOfNBooks(5);
+        LibraryUser libraryUser1 = new LibraryUser("George", "Foreman", "55270612345");
+        LibraryUser libraryUser2 = new LibraryUser("Andy", "Foreman", "56270612345");
+        List<Book> book1 = generateListOfNBooks(1);
+        List<Book> book2 = generateListOfNBooks(1);
+        List<Book> book3 = generateListOfNBooks(1);
+        List<Book> book4 = generateListOfNBooks(1);
+        List<Book> book5 = generateListOfNBooks(1);
+        List<Book> book6 = generateListOfNBooks(1);
 
-        when(bookLibrary.listBooksInHandsOf(libraryUser))
-                .thenReturn(listOfBooks);
+        List<Book> user1Books = Stream.of(book1, book2, book4, book5, book6)
+                .flatMap(x -> x.stream())
+                .collect(Collectors.toList());
 
-        assertEquals(5, listOfBooks.size());
+        List<Book> user2Books = book3;
+
+        when(bookLibrary.listBooksInHandsOf(libraryUser1))
+                .thenReturn(user1Books);
+
+        assertEquals(5, user1Books.size());
+
+        when(bookLibrary.listBooksInHandsOf(libraryUser2))
+                .thenReturn(user2Books);
+
+        assertEquals(1, user2Books.size());
     }
 }
