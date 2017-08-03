@@ -8,7 +8,7 @@ public class FlightManager {
     private HashMap<Integer, String> flightsMap = new HashMap<>();
 
     protected void createFlight (Flight flight) {
-        flightsMap.put(flight.getFlightNumber(), (flight.getDepartureAirport()+" to "+flight.getDestinationAirport()));
+        flightsMap.put(flight.getFlightNumber(), ("No. " + flight.getFlightNumber() + " from " + flight.getDepartureAirport() + " to " + flight.getDestinationAirport()));
     }
 
     protected HashMap<Integer, String> getFlightsMap() {
@@ -17,7 +17,8 @@ public class FlightManager {
 
     protected String showFlightsFrom(String departureAirport) throws RouteNotFoundException {
         String flightsFrom = flightsMap.values().stream()
-                .filter(flight -> flight.startsWith(departureAirport))
+                .filter(flight -> flight.contains(departureAirport))
+                .filter(flight -> !flight.endsWith(departureAirport))
                 .collect(Collectors.toList())
                 .toString();
 
@@ -26,54 +27,35 @@ public class FlightManager {
     }
 
     protected String showFlightsTo(String destinationAirport) throws RouteNotFoundException {
-        String flightsFrom = flightsMap.values().stream()
+        String flightsTo = flightsMap.values().stream()
                 .filter(flight -> flight.endsWith(destinationAirport))
                 .collect(Collectors.toList())
                 .toString();
 
-        System.out.println("Flights to " + destinationAirport + " are " + flightsFrom);
-        return flightsFrom;
+        System.out.println("Flights to " + destinationAirport + " are " + flightsTo);
+        return flightsTo;
     }
 
+    protected String transitFlight(String departureAirport, String transitAirport, String destinationAirport) throws RouteNotFoundException {
 
+        String transitFlights1 = flightsMap.values().stream()
+                .filter(flight -> flight.contains(departureAirport))
+                .filter(flight -> flight.endsWith(transitAirport))
+                .collect(Collectors.toList())
+                .toString();
 
-    protected boolean checkFlightTo(String destinationAirport) throws RouteNotFoundException {
+        String transitFlights2 = flightsMap.values().stream()
+                .filter(flight -> flight.contains(transitAirport))
+                .filter(flight -> flight.endsWith(destinationAirport))
+                .collect(Collectors.toList())
+                .toString();
 
-        boolean flag = false;
-        for (String value : flightsMap.values()) {
-            if (value.endsWith(destinationAirport)) {
-                flag = true;
-            }
-        }
+        String transitFlights = transitFlights1.concat(transitFlights2);
 
-        if(flag) {
-            System.out.println("There is a flight to " + destinationAirport);
-            return true;
-        }
-        else {
-            System.out.println("There is no flight to " + destinationAirport);
-            throw new RouteNotFoundException();
-        }
+        System.out.println("How to get to " + destinationAirport + " from " + departureAirport + " via " + transitAirport + " : " + transitFlights);
+        return transitFlights;
     }
 
-    protected boolean checkFlightFrom(String departureAirport) throws RouteNotFoundException {
-
-        boolean flag = false;
-        for (String value : flightsMap.values()) {
-            if (value.startsWith(departureAirport)) {
-                flag = true;
-            }
-        }
-
-        if(flag) {
-            System.out.println("There is a flight from " + departureAirport);
-            return true;
-        }
-        else {
-            System.out.println("There is no flight from " + departureAirport);
-            throw new RouteNotFoundException();
-        }
-    }
 
     @Override
     public String toString() {

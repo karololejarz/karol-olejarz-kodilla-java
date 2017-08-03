@@ -20,7 +20,7 @@ public class FlightsTest {
         System.out.println(manager);
 
         try {
-            manager.showFlightsFrom("RZE");
+            manager.showFlightsFrom("KRK");
         }
         catch (RouteNotFoundException e)         {
             System.out.println("There is an exception");
@@ -31,6 +31,16 @@ public class FlightsTest {
 
         try {
             manager.showFlightsTo("KRK");
+        }
+        catch (RouteNotFoundException e)         {
+            System.out.println("There is an exception");
+        }
+        finally {
+            System.out.println("Search ended");
+        }
+
+        try {
+            manager.transitFlight("RZE","KRK", "WAR");
         }
         catch (RouteNotFoundException e)         {
             System.out.println("There is an exception");
