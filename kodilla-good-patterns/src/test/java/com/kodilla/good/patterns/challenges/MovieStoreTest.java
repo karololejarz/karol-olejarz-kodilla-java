@@ -1,4 +1,4 @@
-package kom.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges;
 import org.junit.Test;
 
 import java.util.ArrayList;
