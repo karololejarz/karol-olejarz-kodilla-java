@@ -6,7 +6,7 @@ import org.junit.Test;
 public class FlightsTest {
 
     @Test
-    public void flightTest() {
+    public void flightTest() throws RouteNotFoundException {
         FlightManager manager = new FlightManager();
         Flight flight001 = new Flight(001, "RZE", "KRK");
         Flight flight002 = new Flight(002, "WAR", "KRK");
@@ -20,36 +20,14 @@ public class FlightsTest {
         manager.createFlight(flight005);
         System.out.println(manager);
 
-        try {
-            manager.showFlightsFrom("KRK");
-        }
-        catch (RouteNotFoundException e)         {
-            System.out.println("There is an exception");
-        }
-        finally {
-            System.out.println("Search ended");
-        }
+        String expectedFlightsFromKRK = "[{No.4, from KRK to WAR}, {No.5, from KRK to WAR}]";
+        Assert.assertEquals(expectedFlightsFromKRK, manager.showFlightsFrom("KRK"));
 
-        try {
-            manager.showFlightsTo("KRK");
-        }
-        catch (RouteNotFoundException e)         {
-            System.out.println("There is an exception");
-        }
-        finally {
-            System.out.println("Search ended");
-        }
+        String expectedFlightsToKRK = "[{No.1, from RZE to KRK}, {No.2, from WAR to KRK}]";
+        Assert.assertEquals(expectedFlightsToKRK, manager.showFlightsTo("KRK"));
 
-        try {
-            manager.transitFlight("RZE","KRK", "WAR");
-        }
-        catch (RouteNotFoundException e)         {
-            System.out.println("There is an exception");
-        }
-        finally {
-            System.out.println("Search ended");
-        }
-
+        String expectedTransitFlight = "[{No.1, from RZE to KRK}][{No.4, from KRK to WAR}, {No.5, from KRK to WAR}]";
+        Assert.assertEquals(expectedTransitFlight, manager.transitFlight("RZE","KRK", "WAR"));
 
     }
 
