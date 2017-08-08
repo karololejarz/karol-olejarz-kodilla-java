@@ -28,10 +28,10 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "flightNumber=" + flightNumber +
-                ", departureAirport='" + departureAirport + '\'' +
-                ", destinationAirport='" + destinationAirport + '\'' +
+        return "{" +
+                "No." + flightNumber +
+                ", from " + departureAirport +
+                " to " + destinationAirport +
                 '}';
     }
 

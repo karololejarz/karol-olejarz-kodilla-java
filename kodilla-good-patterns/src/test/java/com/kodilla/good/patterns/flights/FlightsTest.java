@@ -1,5 +1,6 @@
 package com.kodilla.good.patterns.flights;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class FlightsTest {

@@ -5,20 +5,19 @@ import java.util.stream.Collectors;
 
 public class FlightManager {
 
-    private HashMap<Integer, String> flightsMap = new HashMap<>();
+    private HashMap<Integer, Flight> flightsMap = new HashMap<>();
 
     protected void createFlight (Flight flight) {
-        flightsMap.put(flight.getFlightNumber(), ("No. " + flight.getFlightNumber() + " from " + flight.getDepartureAirport() + " to " + flight.getDestinationAirport()));
+        flightsMap.put(flight.getFlightNumber(), flight);
     }
 
-    protected HashMap<Integer, String> getFlightsMap() {
+    protected HashMap<Integer, Flight> getFlightsMap() {
         return flightsMap;
     }
 
     protected String showFlightsFrom(String departureAirport) throws RouteNotFoundException {
         String flightsFrom = flightsMap.values().stream()
-                .filter(flight -> flight.contains(departureAirport))
-                .filter(flight -> !flight.endsWith(departureAirport))
+                .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
                 .collect(Collectors.toList())
                 .toString();
 
@@ -28,7 +27,7 @@ public class FlightManager {
 
     protected String showFlightsTo(String destinationAirport) throws RouteNotFoundException {
         String flightsTo = flightsMap.values().stream()
-                .filter(flight -> flight.endsWith(destinationAirport))
+                .filter(flight -> flight.getDestinationAirport().equals(destinationAirport))
                 .collect(Collectors.toList())
                 .toString();
 
@@ -39,14 +38,14 @@ public class FlightManager {
     protected String transitFlight(String departureAirport, String transitAirport, String destinationAirport) throws RouteNotFoundException {
 
         String transitFlights1 = flightsMap.values().stream()
-                .filter(flight -> flight.contains(departureAirport))
-                .filter(flight -> flight.endsWith(transitAirport))
+                .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
+                .filter(flight -> flight.getDestinationAirport().equals(transitAirport))
                 .collect(Collectors.toList())
                 .toString();
 
         String transitFlights2 = flightsMap.values().stream()
-                .filter(flight -> flight.contains(transitAirport))
-                .filter(flight -> flight.endsWith(destinationAirport))
+                .filter(flight -> flight.getDepartureAirport().equals(transitAirport))
+                .filter(flight -> flight.getDestinationAirport().equals(destinationAirport))
                 .collect(Collectors.toList())
                 .toString();
 
