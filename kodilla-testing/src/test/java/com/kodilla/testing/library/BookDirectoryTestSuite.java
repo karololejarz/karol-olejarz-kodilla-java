@@ -1,8 +1,10 @@
 package com.kodilla.testing.library;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -90,58 +92,33 @@ public class BookDirectoryTestSuite {
     }
 
     @Test
-    public void testUserEmptyBookList() {
-        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("1stName", "2ndName", "55270612345");
-        List<Book> listOfBooks = generateListOfNBooks(0);
-
-        when(bookLibrary.listBooksInHandsOf(libraryUser))
-                .thenReturn(listOfBooks);
-
-        assertEquals(0, listOfBooks.size());
-    }
-
-    @Test
-    public void testUserSoleBookList() {
-        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("1stName", "2ndName", "55270612345");
-        List<Book> listOfBooks = generateListOfNBooks(1);
-
-        when(bookLibrary.listBooksInHandsOf(libraryUser))
-                .thenReturn(listOfBooks);
-
-        assertEquals(1, listOfBooks.size());
-    }
-
-    @Test
     public void testUser5BookList() {
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         LibraryUser libraryUser1 = new LibraryUser("George", "Foreman", "55270612345");
         LibraryUser libraryUser2 = new LibraryUser("Andy", "Foreman", "56270612345");
-        List<Book> book1 = generateListOfNBooks(1);
-        List<Book> book2 = generateListOfNBooks(1);
-        List<Book> book3 = generateListOfNBooks(1);
-        List<Book> book4 = generateListOfNBooks(1);
-        List<Book> book5 = generateListOfNBooks(1);
-        List<Book> book6 = generateListOfNBooks(1);
-
-        List<Book> user1Books = Stream.of(book1, book2, book4, book5, book6)
-                .flatMap(x -> x.stream())
-                .collect(Collectors.toList());
-
-        List<Book> user2Books = book3;
-
-        when(bookLibrary.listBooksInHandsOf(libraryUser1))
-                .thenReturn(user1Books);
-
-        assertEquals(5, user1Books.size());
-
-        when(bookLibrary.listBooksInHandsOf(libraryUser2))
-                .thenReturn(user2Books);
-
-        assertEquals(1, user2Books.size());
+        Book book1 = new Book("title1", "author1", 2000);
+        Book book2 = new Book("title2", "author2", 2000);
+        Book book3 = new Book("title3", "author3", 2000);
+        Book book4 = new Book("title4", "author4", 2000);
+        Book book5 = new Book("title5", "author5", 2000);
+        Book book6 = new Book("title6", "author6", 2000);
+        bookLibrary.borrowBook(book1, libraryUser1);
+        bookLibrary.borrowBook(book2, libraryUser1);
+        bookLibrary.borrowBook(book3, libraryUser2);
+        bookLibrary.borrowBook(book4, libraryUser1);
+        bookLibrary.borrowBook(book5, libraryUser1);
+        bookLibrary.borrowBook(book6, libraryUser1);
+        HashMap<Book,LibraryUser> expectedBooksUser1 = new HashMap<>();
+        HashMap<Book,LibraryUser> expectedBooksUser2 = new HashMap<>();
+        expectedBooksUser1.put(book1, libraryUser1);
+        expectedBooksUser1.put(book2, libraryUser1);
+        expectedBooksUser2.put(book3, libraryUser2);
+        expectedBooksUser1.put(book4, libraryUser1);
+        expectedBooksUser1.put(book5, libraryUser1);
+        expectedBooksUser1.put(book6, libraryUser1);
+        Assert.assertEquals(expectedBooksUser1, bookLibrary.listBooksInHandsOf(libraryUser1));;
+        Assert.assertEquals(expectedBooksUser2, bookLibrary.listBooksInHandsOf(libraryUser2));;
     }
+
 }
