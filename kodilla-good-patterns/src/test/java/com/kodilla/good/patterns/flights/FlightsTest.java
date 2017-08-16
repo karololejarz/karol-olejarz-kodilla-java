@@ -3,6 +3,9 @@ package com.kodilla.good.patterns.flights;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class FlightsTest {
 
     @Test
@@ -18,7 +21,8 @@ public class FlightsTest {
         manager.createFlight(flight003);
         manager.createFlight(flight004);
         manager.createFlight(flight005);
-        System.out.println(manager);
+        HashMap<Integer, Flight> flightsMap = manager.getFlightsMap();
+        System.out.println(flightsMap);
 
         String expectedFlightsFromKRK = "[{No.4, from KRK to WAR}, {No.5, from KRK to WAR}]";
         Assert.assertEquals(expectedFlightsFromKRK, manager.showFlightsFrom("KRK"));

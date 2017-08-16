@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-import com.kodilla.good.patterns.challenges.*;
+import com.kodilla.good.patterns.challenges.order.*;
 import org.junit.Test;
 
 

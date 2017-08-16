@@ -16,12 +16,12 @@ public class FlightManager {
     }
 
     protected String showFlightsFrom(String departureAirport) throws RouteNotFoundException {
+
         String flightsFrom = flightsMap.values().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
                 .collect(Collectors.toList())
                 .toString();
 
-        System.out.println("Flights from " + departureAirport + " are " + flightsFrom);
         return flightsFrom;
     }
 
@@ -30,6 +30,18 @@ public class FlightManager {
                 .filter(flight -> flight.getDestinationAirport().equals(destinationAirport))
                 .collect(Collectors.toList())
                 .toString();
+
+        /*
+        Stream<Flight> valueStream = flightsMap.values().stream();
+        Stream<Integer> keyStream = flightsMap.keySet().stream();
+
+        HashMap<Integer, Flight> flightsTo = flightsMap.entrySet().stream()
+                .filter(f->f.getValue().getDestinationAirport().equals(destinationAirport))
+                .collect(Collectors.toMap(HashMap.Entry::getKey,HashMap.Entry::getValue));
+
+        flightsMap.get... da zrobić K, ale nie da zrobić V
+        getKey(), getValue() nie pokazuje
+        */
 
         System.out.println("Flights to " + destinationAirport + " are " + flightsTo);
         return flightsTo;
