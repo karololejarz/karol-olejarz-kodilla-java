@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class FlightsTest {
 
@@ -24,13 +26,13 @@ public class FlightsTest {
         HashMap<Integer, Flight> flightsMap = manager.getFlightsMap();
         System.out.println(flightsMap);
 
-        String expectedFlightsFromKRK = "[{No.4, from KRK to WAR}, {No.5, from KRK to WAR}]";
+        List<Flight> expectedFlightsFromKRK = Arrays.asList(flight004,flight005);
         Assert.assertEquals(expectedFlightsFromKRK, manager.showFlightsFrom("KRK"));
 
-        String expectedFlightsToKRK = "[{No.1, from RZE to KRK}, {No.2, from WAR to KRK}]";
+        List<Flight> expectedFlightsToKRK = Arrays.asList(flight001,flight002);
         Assert.assertEquals(expectedFlightsToKRK, manager.showFlightsTo("KRK"));
 
-        String expectedTransitFlight = "[{No.1, from RZE to KRK}][{No.4, from KRK to WAR}, {No.5, from KRK to WAR}]";
+        List<Flight> expectedTransitFlight = Arrays.asList(flight001,flight004, flight005);;
         Assert.assertEquals(expectedTransitFlight, manager.transitFlight("RZE","KRK", "WAR"));
 
     }

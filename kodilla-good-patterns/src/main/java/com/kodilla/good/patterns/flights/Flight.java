@@ -39,14 +39,19 @@ public class Flight {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Flight flight = (Flight) o;
-        return flightNumber == flight.flightNumber &&
-                Objects.equals(departureAirport, flight.departureAirport) &&
-                Objects.equals(destinationAirport, flight.destinationAirport);
+
+        if (flightNumber != flight.flightNumber) return false;
+        if (!departureAirport.equals(flight.departureAirport)) return false;
+        return destinationAirport.equals(flight.destinationAirport);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightNumber);
+        int result = flightNumber;
+        result = 31 * result + departureAirport.hashCode();
+        result = 31 * result + destinationAirport.hashCode();
+        return result;
     }
 }

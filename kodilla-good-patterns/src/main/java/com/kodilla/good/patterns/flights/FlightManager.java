@@ -1,6 +1,9 @@
 package com.kodilla.good.patterns.flights;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightManager {
@@ -15,53 +18,38 @@ public class FlightManager {
         return flightsMap;
     }
 
-    protected String showFlightsFrom(String departureAirport) throws RouteNotFoundException {
+    protected List<Flight> showFlightsFrom(String departureAirport) throws RouteNotFoundException {
 
-        String flightsFrom = flightsMap.values().stream()
+        List<Flight> flightsFrom = flightsMap.values().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
-                .collect(Collectors.toList())
-                .toString();
+                .collect(Collectors.toList());
 
         return flightsFrom;
     }
 
-    protected String showFlightsTo(String destinationAirport) throws RouteNotFoundException {
-        String flightsTo = flightsMap.values().stream()
+    protected List<Flight> showFlightsTo(String destinationAirport) throws RouteNotFoundException {
+        List<Flight> flightsTo = flightsMap.values().stream()
                 .filter(flight -> flight.getDestinationAirport().equals(destinationAirport))
-                .collect(Collectors.toList())
-                .toString();
-
-        /*
-        Stream<Flight> valueStream = flightsMap.values().stream();
-        Stream<Integer> keyStream = flightsMap.keySet().stream();
-
-        HashMap<Integer, Flight> flightsTo = flightsMap.entrySet().stream()
-                .filter(f->f.getValue().getDestinationAirport().equals(destinationAirport))
-                .collect(Collectors.toMap(HashMap.Entry::getKey,HashMap.Entry::getValue));
-
-        flightsMap.get... da zrobić K, ale nie da zrobić V
-        getKey(), getValue() nie pokazuje
-        */
+                .collect(Collectors.toList());
 
         System.out.println("Flights to " + destinationAirport + " are " + flightsTo);
         return flightsTo;
     }
 
-    protected String transitFlight(String departureAirport, String transitAirport, String destinationAirport) throws RouteNotFoundException {
+    protected ArrayList<Flight> transitFlight(String departureAirport, String transitAirport, String destinationAirport) throws RouteNotFoundException {
 
-        String transitFlights1 = flightsMap.values().stream()
+        List<Flight> transitFlights1 = flightsMap.values().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
                 .filter(flight -> flight.getDestinationAirport().equals(transitAirport))
-                .collect(Collectors.toList())
-                .toString();
+                .collect(Collectors.toList());
 
-        String transitFlights2 = flightsMap.values().stream()
+        List<Flight> transitFlights2 = flightsMap.values().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(transitAirport))
                 .filter(flight -> flight.getDestinationAirport().equals(destinationAirport))
-                .collect(Collectors.toList())
-                .toString();
+                .collect(Collectors.toList());
 
-        String transitFlights = transitFlights1.concat(transitFlights2);
+        ArrayList<Flight> transitFlights = new ArrayList<>(transitFlights1);
+        transitFlights.addAll(transitFlights2);
 
         System.out.println("How to get to " + destinationAirport + " from " + departureAirport + " via " + transitAirport + " : " + transitFlights);
         return transitFlights;
