@@ -7,22 +7,20 @@ public class BigmacTestSuite {
     @Test
     public void makeNewBigmac() {
         Bigmac bigmac = new Bigmac.BigmacBuilder()
-                .chooseRoll("Sesame bun")
+                .chooseRoll(Rolls.Sesame)
                 .countBurgers(1)
-                .addIngredient("lettuce")
-                .addIngredient("onions")
-                .addIngredient("pickles")
-                .addIngredient("cheddar cheese")
-                .chooseSauce("mustard")
+                .addIngredient(Ingredients.lettuce)
+                .addIngredient(Ingredients.onion)
+                .addIngredient(Ingredients.cheese)
+                .chooseSauce(Sauces.barbecue)
                 .make();
 
-        Assert.assertEquals("Sesame bun", bigmac.getRoll());
+        Assert.assertEquals(Rolls.Sesame, bigmac.getRoll());
         Assert.assertEquals(1, bigmac.getBurgers());
-        Assert.assertEquals(true, bigmac.getIngredients().contains("lettuce"));
-        Assert.assertEquals(true, bigmac.getIngredients().contains("onions"));
-        Assert.assertEquals(true, bigmac.getIngredients().contains("pickles"));
-        Assert.assertEquals(true, bigmac.getIngredients().contains("cheddar cheese"));
-        Assert.assertEquals(false, bigmac.getIngredients().contains("gorgonzola"));
-        Assert.assertEquals("mustard", bigmac.getSauce());
+        Assert.assertEquals(true, bigmac.getIngredients().contains(Ingredients.lettuce));
+        Assert.assertEquals(true, bigmac.getIngredients().contains(Ingredients.onion));
+        Assert.assertEquals(true, bigmac.getIngredients().contains(Ingredients.cheese));
+        Assert.assertEquals(false, bigmac.getIngredients().contains(Ingredients.chilli));
+        Assert.assertEquals(Sauces.barbecue, bigmac.getSauce());
     }
 }

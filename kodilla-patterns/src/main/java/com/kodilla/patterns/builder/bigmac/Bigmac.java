@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bigmac {
-    private final String roll;
+    private final Rolls roll;
     private final int burgers;
-    private final List<String> ingredients;
-    private final String sauce;
+    private final List<Ingredients> ingredients;
+    private final Sauces sauce;
 
     public static class BigmacBuilder {
-        private String roll;
+        private Rolls roll;
         private int burgers;
-        private List<String> ingredients = new ArrayList<>();
-        private String sauce;
+        private List<Ingredients> ingredients = new ArrayList<>();
+        private Sauces sauce;
 
-        public BigmacBuilder chooseRoll(String roll) {
+        public BigmacBuilder chooseRoll(Rolls roll) {
             this.roll = roll;
             return this;
         }
@@ -25,12 +25,12 @@ public class Bigmac {
             return this;
         }
 
-        public BigmacBuilder addIngredient(String ingredient) {
+        public BigmacBuilder addIngredient(Ingredients ingredient) {
             ingredients.add(ingredient);
             return this;
         }
 
-        public BigmacBuilder chooseSauce(String sauce) {
+        public BigmacBuilder chooseSauce(Sauces sauce) {
             this.sauce = sauce;
             return this;
         }
@@ -39,14 +39,14 @@ public class Bigmac {
 
     }
 
-    private Bigmac(final String roll, final int burgers, List<String> ingredients, final String sauce) {
+    private Bigmac(final Rolls roll, final int burgers, List<Ingredients> ingredients, final Sauces sauce) {
         this.roll = roll;
         this.burgers = burgers;
         this.ingredients = ingredients;
         this.sauce = sauce;
     }
 
-    public String getRoll() {
+    public Rolls getRoll() {
         return roll;
     }
 
@@ -54,11 +54,11 @@ public class Bigmac {
         return burgers;
     }
 
-    public List<String> getIngredients() {
+    public List<Ingredients> getIngredients() {
         return ingredients;
     }
 
-    public String getSauce() {
+    public Sauces getSauce() {
         return sauce;
     }
 
