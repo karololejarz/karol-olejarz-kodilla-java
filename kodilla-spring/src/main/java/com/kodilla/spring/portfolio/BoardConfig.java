@@ -31,7 +31,7 @@ public class BoardConfig {
     @Bean(name="done")
     public TaskList getDoneList() {
         List<String> tasks = new ArrayList<>();
-        tasks.add("inProgress1");
+        tasks.add("done1");
         return new TaskList(tasks);
     }
 
