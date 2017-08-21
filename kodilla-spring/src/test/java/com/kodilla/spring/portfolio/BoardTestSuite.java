@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class BoardTestSuite {
     @Test
     public void testTaskAdd() {
-
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
         Board board = context.getBean(Board.class);

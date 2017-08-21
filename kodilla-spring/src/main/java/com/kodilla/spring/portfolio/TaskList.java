@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TaskList {
 
-    static List<String> tasks;
+    List<String> tasks;
 
     public TaskList(List<String> tasks) {
         this.tasks = new ArrayList<>();
