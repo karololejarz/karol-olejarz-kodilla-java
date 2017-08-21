@@ -9,13 +9,9 @@ import java.util.List;
 @Configuration
 public class BoardConfig {
 
-    TaskList toDoList;
-    TaskList inProgressList;
-    TaskList doneList;
-
     @Bean
     public Board newBoard(){
-        return new Board(toDoList, inProgressList, doneList);
+        return new Board(getToDoList(), getInProgressList(), getDoneList());
     }
 
     @Bean(name="toDo")
