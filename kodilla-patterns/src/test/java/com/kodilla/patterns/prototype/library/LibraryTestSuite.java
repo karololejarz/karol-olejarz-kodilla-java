@@ -9,19 +9,19 @@ public class LibraryTestSuite {
     Book book1 = new Book("Title1", "Author1", LocalDate.now());
     Book book2 = new Book("Title2", "Author1", LocalDate.now());
     Book book3 = new Book("Title3", "Author1", LocalDate.now());
-    Library library1 = new Library("Library1");
+    Library library = new Library("original");
 
     @Test
-    public void cloneLibrary() {
-        library1.addBook(book1);
-        library1.addBook(book2);
-        library1.addBook(book3);
-        System.out.println(library1);
+    public void testGetBooks() {
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+        System.out.println(library);
 
         Library shallowCopy = null;
         try {
-            shallowCopy = library1.shallowCopy();
-            shallowCopy.setName("Library2");
+            shallowCopy = library.shallowCopy();
+            shallowCopy.setName("shallowCopy");
         } catch (CloneNotSupportedException e) {
             System.out.println(e);
         }
@@ -32,8 +32,8 @@ public class LibraryTestSuite {
 
         Library deepCopy = null;
         try {
-            deepCopy = library1.deepCopy();
-            deepCopy.setName("Library3");
+            deepCopy = library.deepCopy();
+            deepCopy.setName("deepCopy");
         } catch (CloneNotSupportedException e) {
             System.out.println(e);
         }
