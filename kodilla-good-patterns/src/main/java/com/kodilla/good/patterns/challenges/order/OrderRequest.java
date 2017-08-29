@@ -46,12 +46,12 @@ public class OrderRequest {
 
     @Override
     public String toString() {
-        return "OrderRequest{" +
-                "orderNumber=" + orderNumber +
-                ", user=" + user +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                ", submittedDate=" + submittedDate +
-                '}' + " Total price: " + countTotalPrice();
+        return "[OrderRequest{" +
+                "orderNumber= " + orderNumber +
+                ", user=\n" + user +
+                ", product=\n" + product +
+                ",\nquantity=" + quantity +
+                ", submittedDate=\n" + submittedDate +
+                "\nTotal price: " + countTotalPrice() + "]";
     }
 }
