@@ -2,28 +2,27 @@ package com.kodilla.good.patterns.challenges.order;
 
 public class ProductOrderService {
 
-    private InformationService informationService;
-    private RentalService rentalService;
-    private RentalRepository rentalRepository;
+    private final InformationService informationService;
+    private final OrderService orderService;
+    private final OrderRepository orderRepository;
 
     public ProductOrderService(final InformationService informationService,
-                           final RentalService rentalService,
-                           final RentalRepository rentalRepository) {
+                           final OrderService orderService,
+                           final OrderRepository orderRepository) {
         this.informationService = informationService;
-        this.rentalService = rentalService;
-        this.rentalRepository = rentalRepository;
+        this.orderService = orderService;
+        this.orderRepository = orderRepository;
     }
 
-    public RentalDto process(final RentRequest rentRequest) {
-        boolean isRented = rentalService.rent(rentRequest.getUser(), rentRequest.getFrom(),
-                rentRequest.getTo());
+    public OrderDto process(final OrderRequest orderRequest) {
+        boolean isBought = orderService.order(orderRequest.getUser(), orderRequest.getProduct());
 
-        if(isRented) {
-            informationService.inform(rentRequest.getUser());
-            rentalRepository.createRental(rentRequest.getUser(), rentRequest.getFrom(), rentRequest.getTo());
-            return new RentalDto(rentRequest.getUser(), true);
+        if(isBought) {
+            informationService.inform(orderRequest.getUser());
+            orderRepository.createOrder(orderRequest.getUser(), orderRequest.getProduct());
+            return new OrderDto(orderRequest.getUser(), true);
         } else {
-            return new RentalDto(rentRequest.getUser(), false);
+            return new OrderDto(orderRequest.getUser(), false);
         }
     }
 }
