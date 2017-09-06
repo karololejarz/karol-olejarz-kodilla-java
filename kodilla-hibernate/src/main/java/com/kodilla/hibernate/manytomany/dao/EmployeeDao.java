@@ -13,7 +13,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface CompanyDao extends CrudRepository<Company, Integer> {
-    @Query(nativeQuery = true)
-    List<Company> retrieve3FirstChars(@Param("COMPANY3CHAR") String company3char);
+public interface EmployeeDao extends CrudRepository<Employee, Integer> {
+    @Query
+    List<Employee> retrieveLastName(@Param("LASTNAME") String lastname);
 }

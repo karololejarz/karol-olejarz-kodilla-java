@@ -16,6 +16,7 @@ import java.util.List;
 public class TaskFinancialDetailsDaoTestSuite {
     @Autowired
     TaskFinancialDetailsDao taskFinancialDetailsDao;
+    @Autowired
     TaskDao taskDao;
 
     @Test

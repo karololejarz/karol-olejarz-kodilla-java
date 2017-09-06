@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -14,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -60,5 +63,21 @@ public class CompanyDaoTestSuite {
             //    //do nothing
             //}
         */
+    }
+
+    @Test
+    /*Uses tables from first test, no cleanup needed - no changes in data*/
+    public void testFindEmployeeByLastName(){
+        String lastname = "Smith";
+        int found = employeeDao.retrieveLastName(lastname).size();
+        Assert.assertEquals(1,found);
+    }
+
+    @Test
+    /*Uses tables from first test, no cleanup needed - no changes in data*/
+    public void testFindCompanyByFirst3Chars(){
+        String first3Chars = "Sof";
+        int found = companyDao.retrieve3FirstChars(first3Chars).size();
+        Assert.assertEquals(1,found);
     }
 }

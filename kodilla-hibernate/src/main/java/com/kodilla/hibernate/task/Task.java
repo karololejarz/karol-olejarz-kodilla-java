@@ -28,7 +28,7 @@ import java.util.Date;
 )
 
 @Entity
-@Table(name = "HIBERNATETASKS")
+@Table(name = "TASKS")
 public final class Task {
     private int id;
     private String description;
