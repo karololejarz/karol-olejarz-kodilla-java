@@ -18,6 +18,36 @@ public class CompanyDaoTestSuite {
     @Autowired
     EmployeeDao employeeDao;
 
+    public void createAndPopulateTables()
+    {
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        dataMaesters.getEmployees().add(stephanieClarckson);
+        dataMaesters.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarckson.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(greyMatter);
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+    }
+
     @Test
     public void testSaveManyToMany() {
         //Given
@@ -54,30 +84,43 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, dataMaestersId);
         Assert.assertNotEquals(0, greyMatterId);
 
-        /*CleanUp
-                /try {
-            //    companyDao.delete(softwareMachineId);
-            //    companyDao.delete(dataMaestersId);
-            //    companyDao.delete(greyMatterId);
-            //} catch (Exception e) {
-            //    //do nothing
-            //}
-        */
+        //CleanUp
+        try {
+            companyDao.delete(softwareMachineId);
+            companyDao.delete(dataMaestersId);
+            companyDao.delete(greyMatterId);
+        } catch (Exception e) {
+        }
+
     }
 
     @Test
-    /*Uses tables from first test, no cleanup needed - no changes in data*/
     public void testFindEmployeeByLastName(){
+        createAndPopulateTables();
+
         String lastname = "Smith";
         int found = employeeDao.retrieveLastName(lastname).size();
         Assert.assertEquals(1,found);
+
+        try {
+            companyDao.deleteAll();
+            employeeDao.deleteAll();
+        } catch (Exception e) {
+        }
     }
 
     @Test
-    /*Uses tables from first test, no cleanup needed - no changes in data*/
     public void testFindCompanyByFirst3Chars(){
+        createAndPopulateTables();
+
         String first3Chars = "Sof";
         int found = companyDao.retrieve3FirstChars(first3Chars).size();
         Assert.assertEquals(1,found);
+
+        try {
+            companyDao.deleteAll();
+            employeeDao.deleteAll();
+        } catch (Exception e) {
+        }
     }
 }
