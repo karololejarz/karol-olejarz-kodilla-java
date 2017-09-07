@@ -18,35 +18,6 @@ public class CompanyDaoTestSuite {
     @Autowired
     EmployeeDao employeeDao;
 
-    /*
-    public void createAndPopulateTables()
-    {
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
-
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Data Maesters");
-        Company greyMatter = new Company("Grey Matter");
-
-        softwareMachine.getEmployees().add(johnSmith);
-        dataMaesters.getEmployees().add(stephanieClarckson);
-        dataMaesters.getEmployees().add(lindaKovalsky);
-        greyMatter.getEmployees().add(johnSmith);
-        greyMatter.getEmployees().add(lindaKovalsky);
-
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(greyMatter);
-
-        companyDao.save(softwareMachine);
-        companyDao.save(dataMaesters);
-        companyDao.save(greyMatter);
-    }
-    */
-
     @Test
     public void testSaveManyToMany() {
         //Given
@@ -94,7 +65,6 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testFindEmployeeByLastName(){
-        /*createAndPopulateTables();*/
 
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -134,25 +104,10 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
         }
 
-        /*try {
-            //3 companies
-            companyDao.delete(0);
-            companyDao.delete(1);
-            companyDao.delete(2);
-            //3 workers, but 5 company-posts
-            employeeDao.delete(0);
-            employeeDao.delete(1);
-            employeeDao.delete(2);
-            employeeDao.delete(3);
-            employeeDao.delete(4);
-        } catch (Exception e) {
-        }
-        */
     }
 
     @Test
     public void testFindCompanyByFirst3Chars(){
-        /*createAndPopulateTables();*/
 
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -191,20 +146,5 @@ public class CompanyDaoTestSuite {
             employeeDao.delete(lindaKovalsky);
         } catch (Exception e) {
         }
-
-        /*try {
-            //3 companies
-            companyDao.delete(0);
-            companyDao.delete(1);
-            companyDao.delete(2);
-            //3 workers, but 5 company-posts
-            employeeDao.delete(0);
-            employeeDao.delete(1);
-            employeeDao.delete(2);
-            employeeDao.delete(3);
-            employeeDao.delete(4);
-        } catch (Exception e) {
-        }
-        */
     }
 }
