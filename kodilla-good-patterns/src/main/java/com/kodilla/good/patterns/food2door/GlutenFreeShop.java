@@ -2,6 +2,9 @@ package com.kodilla.good.patterns.food2door;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.kodilla.good.patterns.food2door.ProductClass.glutenfree;
 
 public class GlutenFreeShop implements Vendor {
     private static final String NAME = "GlutenFreeShop";
@@ -36,6 +39,16 @@ public class GlutenFreeShop implements Vendor {
         catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("There is no such order to deliver");
         }
+    }
+
+    protected List<Product> searchForSupply(Supplier supplier) {
+        List<Product> productsAvailable = supplier.getSuppliedProducts();
+        ProductClass interestingClass = glutenfree;
+        List<Product> interestingProducts = productsAvailable.stream()
+                .filter(product -> product.getProductClass()==interestingClass)
+                .collect(Collectors.toList());
+        System.out.println("Glutenfree products are: " + interestingProducts);
+        return interestingProducts;
     }
 
     @Override

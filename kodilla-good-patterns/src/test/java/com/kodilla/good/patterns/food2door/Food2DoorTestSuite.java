@@ -5,14 +5,20 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 
+import static com.kodilla.good.patterns.food2door.ProductClass.extra;
+import static com.kodilla.good.patterns.food2door.ProductClass.glutenfree;
+import static com.kodilla.good.patterns.food2door.ProductClass.healthy;
+
 public class Food2DoorTestSuite {
     ExtraFoodShop efs = new ExtraFoodShop();
     GlutenFreeShop gfs = new GlutenFreeShop();
     HealthyShop hs = new HealthyShop();
 
-    Product extra1 = new Product(1,"extra1",1.50);
-    Product healthy1 = new Product(1,"healthy1", 3.00);
-    Product glutenFree1 = new Product(1,"glutenFree1",4.50);
+    Product extra1 = new Product(1,"extra1",extra,1.50);
+    Product healthy1 = new Product(1,"healthy1",healthy, 3.00);
+    Product glutenFree1 = new Product(1,"glutenFree1",glutenfree,4.50);
+
+    Supplier supplier = new Supplier("supplier");
 
     Customer customer1 = new Customer("customer@customer.com");
 
@@ -58,5 +64,15 @@ public class Food2DoorTestSuite {
         efs.deliver(hs.getOrderList().get(0));
         gfs.deliver(hs.getOrderList().get(0));
         hs.deliver(gfs.getOrderList().get(0));
+    }
+
+    @Test
+    public void testProductSearch() {
+        supplier.createProduct(extra1);
+        supplier.createProduct(healthy1);
+        supplier.createProduct(glutenFree1);
+
+        Assert.assertEquals(1,gfs.searchForSupply(supplier).size());
+        Assert.assertEquals(1,hs.searchForSupply(supplier).size());
     }
 }

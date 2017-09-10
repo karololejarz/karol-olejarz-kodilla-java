@@ -1,10 +1,9 @@
 package com.kodilla.good.patterns.food2door;
 
 public class Customer {
+    private String login;
 
-    public String login;
-
-    public Customer(String login) {
+    protected Customer(String login) {
         this.login = login;
     }
 
