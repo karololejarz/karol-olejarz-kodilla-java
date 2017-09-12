@@ -14,11 +14,11 @@ public class Item {
     private BigDecimal value;
     private Invoice invoice;
 
-    public Item(int id, Product product, BigDecimal price, int quantity) {
-        this.id = id;
+    public Item(Product product, BigDecimal price, int quantity, BigDecimal value) {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
+        this.value = value;
     }
 
     public Item() {
@@ -26,7 +26,6 @@ public class Item {
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "ID", unique = true)
     public int getId() {
         return id;
@@ -54,8 +53,8 @@ public class Item {
     @NotNull
     @Column(name = "Value")
     public BigDecimal getValue() {
-        BigDecimal quantity = BigDecimal.valueOf(getQuantity());
-        value = quantity.multiply(getPrice());
+        //BigDecimal quantity = BigDecimal.valueOf(getQuantity());
+        //value = quantity.multiply(getPrice());
         return value;
     }
 

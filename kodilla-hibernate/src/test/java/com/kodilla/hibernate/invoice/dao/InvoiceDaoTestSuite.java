@@ -24,10 +24,13 @@ public class InvoiceDaoTestSuite {
 
     @Test
     public void testInvoiceDaoSave(){
-        Product product1 = new Product(1,"product1");
-        Product product1b = new Product(1,"product1bargain");
-        Item item1 = new Item(1, product1, BigDecimal.valueOf(2.5),4);
-        Item item2 = new Item(2, product1b, BigDecimal.valueOf(2),5);
+        Product product1 = new Product("product1");
+        Product product1b = new Product("product1bargain");
+        productDao.save(product1);
+        productDao.save(product1b);
+
+        Item item1 = new Item(product1, BigDecimal.valueOf(2.5),4, BigDecimal.valueOf(10));
+        Item item2 = new Item(product1b, BigDecimal.valueOf(2),5, BigDecimal.valueOf(10));
         Invoice invoice = new Invoice(1,"Invoice No.1");
 
         invoice.getItems().add(item1);
@@ -35,7 +38,7 @@ public class InvoiceDaoTestSuite {
 
         invoiceDao.save(invoice);
 
-        Assert.assertEquals(2,invoice.getItems());
+        Assert.assertEquals(2,invoice.getItems().size());
         Assert.assertEquals(4,invoice.getItems().get(0).getQuantity());
         Assert.assertEquals(5,invoice.getItems().get(1).getQuantity());
 
