@@ -16,11 +16,11 @@ public class PizzaOrderTests {
 
         String orderDescription = pizzaOrder.getDescription();
         String expectedDescription = "Basic pizza (tomato souce + cheese) + vegetable + vegetable + meat + fish";
-        BigDecimal orderCost = pizzaOrder.getCost().setScale(2, BigDecimal.ROUND_HALF_DOWN);
+        BigDecimal orderCost = pizzaOrder.getCost().setScale(2, BigDecimal.ROUND_HALF_UP);
         BigDecimal expectedCost = new BigDecimal(15.00)
                 .add(new BigDecimal(1.50)).add(new BigDecimal(1.50))
                 .add(new BigDecimal(3.00)).add(new BigDecimal(4.50))
-                .setScale(2, BigDecimal.ROUND_HALF_DOWN);
+                .setScale(2, BigDecimal.ROUND_HALF_UP);
 
         Assert.assertEquals(expectedCost, orderCost);
         Assert.assertEquals(expectedDescription,orderDescription);
