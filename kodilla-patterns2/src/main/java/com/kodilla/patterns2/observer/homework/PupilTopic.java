@@ -3,7 +3,7 @@ package com.kodilla.patterns2.observer.homework;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PupilTopic implements UserObservable {
+public class PupilTopic implements PupilObservable {
     private MentorObserver mentor;
     private final List<Task> allTasks;
     private final List<Task> completedTasks;
