@@ -11,7 +11,7 @@ public class EBayTestingApp {
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
         driver.get("https://www.ebay.com");
 
-        //Found via placeholder "Search for anything"
+        //This element has a placeholder "Search for anything"
         WebElement searchField = driver.findElement(By.name("_nkw"));;
         searchField.sendKeys("Laptop");
         searchField.submit();
