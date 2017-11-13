@@ -17,9 +17,9 @@ public class FacebookTestingApp {
     public static final String XPATH_DAY = "//*[@id=\"day\"]";
     public static final String XPATH_MONTH = "//*[@id=\"month\"]";
     public static final String XPATH_YEAR = "//*[@id=\"year\"]";
-    public static final String XPATH_GENDER = "//*[@id=\"u_0_4\"]";
+    public static final String XPATH_GENDER = "//*[@name=\"sex\" and @value=\"2\"]";
 
-    public static void main(String[] args) throws org.openqa.selenium.ElementNotVisibleException{
+    public static void main(String[] args) /*throws org.openqa.selenium.ElementNotVisibleException*/{
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get("https://www.facebook.com/");
 
@@ -50,9 +50,8 @@ public class FacebookTestingApp {
         Select selectYear = new Select(year);
         selectYear.selectByValue("1997");
 
-        //this one likes not to show up on time, we need wait and throw the exception
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_GENDER)));
+        //WebDriverWait wait = new WebDriverWait(driver,10);
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_GENDER)));
         WebElement gender = driver.findElement(By.xpath(XPATH_GENDER));
         gender.click();
     }
